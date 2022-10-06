@@ -110,12 +110,12 @@ app.post('/api/persons', (request, response) => {
 app.put('/api/persons/:id', (request, response, next) => {
   const body = request.body
 
-  const note = {
+  const person = {
     name: body.name,
     number: body.number,
   }
 
-  Person.findByIdAndUpdate(request.params.id, note)
+  Person.findByIdAndUpdate(request.params.id, person, { new: true })
     .then(updatedPerson => {
       response.json(updatedPerson)
     })
